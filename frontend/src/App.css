@@ -1,0 +1,14 @@
+.pink-gradient {
+  background: rgb(63, 94, 251);
+  background: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(252, 70, 107, 1) 100%
+  );
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.rotate_x_90 {
+  transform: rotate(-90deg) rotateY(180deg);
+}
