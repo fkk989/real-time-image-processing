@@ -3,6 +3,7 @@ import { useImageEditor } from "../context/imageEditorContext";
 import { EditType } from "../lib/types";
 import { editImage } from "../hooks/image";
 import { useUndo } from "../hooks/undo_redo";
+import toast from "react-hot-toast";
 
 export const Sidebar = () => {
   //
@@ -17,6 +18,7 @@ export const Sidebar = () => {
     rotate,
     setRotate,
     setLoading,
+    setIsCroping,
   } = useImageEditor();
 
   const { setUndo } = useUndo();
@@ -72,6 +74,10 @@ export const Sidebar = () => {
         <div className="w-full flex flex-col items-center ">
           {/* crop */}
           <button
+            onClick={() => {
+              if (!imagePath) return toast.error("please upload a image");
+              setIsCroping(true);
+            }}
             className={
               "flex items-center w-[80%] h-[30px] text-white text-[13px] cursor-pointer hover:bg-[#ffffff2d] pl-[2px] rounded-md"
             }

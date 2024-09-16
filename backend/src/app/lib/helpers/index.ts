@@ -1,4 +1,4 @@
-export function getWithAndHeith({
+export function get_custom_width_and_height({
   height,
   width,
 }: {
@@ -32,5 +32,5 @@ export function getWithAndHeith({
     }
   }
 
-  return { height, width };
+  return { height: Math.floor(height), width: Math.floor(width) };
 }

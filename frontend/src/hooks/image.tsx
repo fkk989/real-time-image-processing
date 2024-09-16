@@ -116,11 +116,6 @@ export const useDownloadImg = () => {
   const mutation = useMutation({
     mutationKey: ["download-image"],
     mutationFn: async () => {
-      if (!imageContext.imagePath) {
-        return toast.error("please upload a image first", {
-          id: "download-img",
-        });
-      }
       const data = (
         await axios.post("/api/image/download", reqbody, {
           headers: {

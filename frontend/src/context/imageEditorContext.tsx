@@ -16,6 +16,10 @@ export interface ImageContextProp {
   >;
   rotate: number;
   setRotate: React.Dispatch<React.SetStateAction<ImageContextProp["rotate"]>>;
+  isCroping: boolean;
+  setIsCroping: React.Dispatch<
+    React.SetStateAction<ImageContextProp["isCroping"]>
+  >;
   crop: {
     width: number;
     height: number;
@@ -53,6 +57,8 @@ export const ImageEditorProvider = ({
   const [rotate, setRotate] = useState(0);
   const [loading, setLoading] = useState(false);
   const [crop, setCrop] = useState<ImageContextProp["crop"]>(null);
+  const [isCroping, setIsCroping] =
+    useState<ImageContextProp["isCroping"]>(false);
   //
   return (
     <ImageEditorContext.Provider
@@ -71,6 +77,8 @@ export const ImageEditorProvider = ({
         setContrast,
         rotate,
         setRotate,
+        isCroping,
+        setIsCroping,
         crop,
         setCrop,
         loading,

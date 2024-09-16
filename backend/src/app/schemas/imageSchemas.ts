@@ -39,5 +39,11 @@ export const restoreScheme = z.object({
 });
 
 export const reqBodyImageSchema = imageSchema.merge(restoreScheme);
+export interface CropType {
+  width: number;
+  height: number;
+  top: number;
+  left: number;
+}
 
 export type ImageSizeType = "small" | "medium" | "big" | "xl" | "xxl";

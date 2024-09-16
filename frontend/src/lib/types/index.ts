@@ -12,6 +12,8 @@ export type EditType = Omit<
   | "setContrast"
   | "setRotate"
   | "setCrop"
+  | "isCroping"
+  | "setIsCroping"
   | "loading"
   | "setLoading"
   | "undoStack"

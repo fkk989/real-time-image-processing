@@ -4,9 +4,11 @@ import { ArrowDown } from "../components/icons";
 import { HistoryManager } from "../components/HistoryManager";
 import { useDownloadImg } from "../hooks/image";
 import ImageUploader from "../components/ImageUploader";
+import { ImageCropper } from "../components/Cropper";
+import toast from "react-hot-toast";
 
 export const Editor = () => {
-  const { imagePath, loading } = useImageEditor();
+  const { imagePath, loading, isCroping } = useImageEditor();
   const { mutation: downloadImage } = useDownloadImg();
   return (
     <div className="w-screen h-screen flex flex-col">
@@ -19,6 +21,11 @@ export const Editor = () => {
         <button
           onClick={(e) => {
             e.preventDefault();
+            if (!imagePath) {
+              return toast.error("please upload a image first", {
+                id: "download-img",
+              });
+            }
             downloadImage.mutate();
           }}
           className="w-[150px] h-[40px] flex items-center justify-center gap-[10px] rounded-full bg-[#2D7CFA] hover:bg-[#2d7cfacd]"
@@ -33,10 +40,16 @@ export const Editor = () => {
           {imagePath ? (
             <>
               {!loading ? (
-                <img
-                  src={`/api/image/${imagePath}?${Date.now()}`}
-                  alt={imagePath}
-                />
+                <>
+                  {isCroping ? (
+                    <ImageCropper />
+                  ) : (
+                    <img
+                      src={`/api/image/${imagePath}?${Date.now()}`}
+                      alt={imagePath}
+                    />
+                  )}
+                </>
               ) : (
                 <div className="relative w-fit h-fit">
                   <img

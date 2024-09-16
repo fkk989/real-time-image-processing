@@ -3,10 +3,10 @@ import mime from "mime-types";
 import path from "path";
 import { Request } from "express";
 import { v4 as uuidv4 } from "uuid";
-
+import sharp from "sharp";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../../../uploads/orignal"));
+    cb(null, path.join(__dirname, "../../../uploads/original"));
   },
   filename: (req, file, cb) => {
     cb(null, `${uuidv4()}${path.extname(file.originalname)}`);
