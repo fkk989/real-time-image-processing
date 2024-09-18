@@ -11,7 +11,7 @@ import { EditType } from "../lib/types";
 //
 export const useUploadImg = () => {
   //
-  const { setImagePath, setLoading } = useImageEditor();
+  const { setImagePath, setLoading, setType } = useImageEditor();
   const mutation = useMutation({
     mutationKey: ["upload-img"],
     mutationFn: async (image: File) => {
@@ -28,7 +28,7 @@ export const useUploadImg = () => {
       console.log("imagedata", data);
       //
       setImagePath(data.imagePath);
-
+      setType(data.type);
       //
       toast.success("image uploaded", { id: "upload-img" });
       setLoading(false);

@@ -3,3 +3,7 @@ dist
 tsconfig.tsbuildinfo
 .DS_Store
 
+# images
+*.png
+*.jpg
+*.jpeg

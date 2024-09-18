@@ -83,6 +83,7 @@ export async function uploadService(req: Request, res: Response) {
     res.json(
       createResponse(true, "image uploaded", {
         imagePath: newFileName,
+        type: mimeType,
       })
     );
   } catch (e: any) {

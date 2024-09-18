@@ -4,6 +4,7 @@ import { EditType } from "../lib/types";
 import { editImage } from "../hooks/image";
 import { useUndo } from "../hooks/undo_redo";
 import toast from "react-hot-toast";
+import { TypeSelector } from "./TypeSelector";
 
 export const Sidebar = () => {
   //
@@ -43,6 +44,9 @@ export const Sidebar = () => {
             className="mt-[20px]"
             lable="Brightness"
             onChange={(e) => {
+              e.preventDefault();
+              if (!imagePath)
+                return toast.error("please upload a image", { id: "no-image" });
               const value = parseInt(e.target.value);
               setBrightness(value);
               reqBody.brightness = value;
@@ -57,6 +61,9 @@ export const Sidebar = () => {
             className="mt-[20px]"
             lable="Contrast"
             onChange={(e) => {
+              e.preventDefault();
+              if (!imagePath)
+                return toast.error("please upload a image", { id: "no-image" });
               const value = parseInt(e.target.value);
               setContrast(value);
               reqBody.contrast = value;
@@ -71,11 +78,12 @@ export const Sidebar = () => {
       {/* size */}
       <div className="w-full flex flex-col items-center mt-[50px]">
         <h3 className="text-white text-[13px]">Size</h3>
-        <div className="w-full flex flex-col items-center ">
+        <div className="w-full flex flex-col gap-[20px] items-center ">
           {/* crop */}
           <button
             onClick={() => {
-              if (!imagePath) return toast.error("please upload a image");
+              if (!imagePath)
+                return toast.error("please upload a image", { id: "no-image" });
               setIsCroping(true);
             }}
             className={
@@ -89,6 +97,9 @@ export const Sidebar = () => {
             className="mt-[20px]"
             lable="Rotate"
             onChange={(e) => {
+              e.preventDefault();
+              if (!imagePath)
+                return toast.error("please upload a image", { id: "no-image" });
               const value = parseInt(e.target.value);
               setRotate(value);
               reqBody.rotate = value;
@@ -98,6 +109,8 @@ export const Sidebar = () => {
             max={360}
             value={rotate}
           />
+          {/* type selectto */}
+          <TypeSelector body={reqBody} />
         </div>
       </div>
     </div>
